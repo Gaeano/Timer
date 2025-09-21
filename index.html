@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>timer timer</title>
+<link rel="stylesheet" href="index.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+
+<body>
+
+<div id="content">
+<div id="input">
+
+    <input type="number" id="minutesInput" min="0" max="59">
+    <label>Minutes</label>
+    
+    <input type="number" id="secondsInput" min="0" max="59">
+    <label>Seconds</label>
+
+    <button id="setTime"> Set Time </button>
+</div>
+
+
+<div id="timer">00:00</div>
+<div id="buttons">
+<button id="buttonTimer"> START </button>
+<button id="stopTimer"> STOP</button>
+
+<audio id ="alarm">
+    <source src="alarm.mp3" type="audio/mp3">
+    <source src="alarm.wav" type="audio/wav">
+
+</audio>
+</div>
+
+
+</div>
+
+<script>
+
+const minutesInput = document.getElementById('minutesInput');
+const secondsInput = document.getElementById('secondsInput');
+
+
+let timer = 0;
+let timerInterval;
+let isRunning = false;
+let alarm = document.getElementById("alarm");
+const time = document.getElementById('timer');
+const startBTN = document.getElementById('buttonTimer');
+const stopBTN = document.getElementById('stopTimer');
+const setTime = document.getElementById('setTime');
+let origTimer = 0;
+
+const setTimer = () =>{
+    let minutes = parseInt(minutesInput.value) || 0; //converts to int
+    let seconds = parseInt(secondsInput.value) || 0;
+    timer = (minutes * 60) + seconds;
+    origTimer = timer;
+    updateTimer();
+
+}
+
+const updateTimer = () => {
+    const min = Math.floor(timer / 60);
+    const sec = timer % 60;
+
+    time.innerHTML = `${min.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+};
+
+const startTimer = () => {
+    isRunning = true;
+    timerInterval = setInterval(() => {
+         timer--;
+         updateTimer();
+
+         if (timer == 0){
+            clearInterval(timerInterval);
+            alarm.play();
+            alert("Time's up!");
+            isRunning = false;
+            timer = origTimer;
+            
+            updateTimer();
+         }
+    }, 1000);
+}
+
+const stopTimer = () => {
+    clearInterval(timerInterval);
+    alarm.pause()
+    timer = origTimer;
+    updateTimer();
+    
+}
+
+
+startBTN.addEventListener("click", startTimer);
+stopBTN.addEventListener("click", stopTimer);
+setTime.addEventListener("click", setTimer);
+
+</script>
+
+
+</body>
+
+
+
+
+</html>
