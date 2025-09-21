@@ -28,6 +28,7 @@
 <div id="buttons">
 <button id="buttonTimer"> START </button>
 <button id="stopTimer"> STOP</button>
+<button id="resetTimer"> RESET</button>
 
 <audio id ="alarm">
     <source src="alarm.mp3" type="audio/mp3">
@@ -53,6 +54,9 @@ const time = document.getElementById('timer');
 const startBTN = document.getElementById('buttonTimer');
 const stopBTN = document.getElementById('stopTimer');
 const setTime = document.getElementById('setTime');
+const resetTimer = document.getElementById('resetTimer');
+
+
 let origTimer = 0;
 
 const setTimer = () =>{
@@ -97,10 +101,21 @@ const stopTimer = () => {
     
 }
 
+const resetTime = () =>{
+    clearInterval(timerInterval);
+    alarm.pause();
+    timer = 0;
+    origTimer = 0;
+    updateTimer();
+    minutesInput.value = '';
+    secondsInput.value = '';
+}
+
 
 startBTN.addEventListener("click", startTimer);
 stopBTN.addEventListener("click", stopTimer);
 setTime.addEventListener("click", setTimer);
+resetTimer.addEventListener("click", resetTime);
 
 </script>
 
