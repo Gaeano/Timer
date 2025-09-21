@@ -84,7 +84,7 @@ const startTimer = () => {
          if (timer == 0){
             clearInterval(timerInterval);
             alarm.play();
-            alert("Time's up!");
+            // alert("Time's up!");
             isRunning = false;
             timer = origTimer;
             
@@ -103,7 +103,7 @@ const stopTimer = () => {
 
 const resetTime = () =>{
     clearInterval(timerInterval);
-    // alarm.pause();
+    alarm.pause();
     timer = 0;
     origTimer = 0;
     updateTimer();
