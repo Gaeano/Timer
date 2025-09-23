@@ -3,11 +3,14 @@ body{
 }
 
 
-
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 #timer{
     font-size: 50px;
     padding: 10px;
+    text-align: center;
 }
 
 
@@ -18,10 +21,12 @@ body{
     justify-content: center;
     align-items: center;
     padding-bottom: 10px;
+    
 }
 
 #input{
     font-size: 20px;
+    margin-bottom: 20px;
     
 }
 
@@ -40,6 +45,8 @@ body{
     border-color: rgb(206, 206, 162);
     border-radius: 5px;
     transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
 #setTime:hover{
@@ -54,12 +61,26 @@ body{
     border-color: rgb(206, 206, 162);
     border-radius: 5px;
     transition: all 0.3s ease;
-
-
 }
-
+#buttons{
+    margin: 20px 10px;
+}
 #buttonTimer:hover{
     background-color: rgb(255, 255, 179);
+    transform: translateY(-5px);
+}
+
+#addList{
+    width: fit-content ;
+    font-size: 20px;
+    background-color: rgb(255, 200, 179);
+    border-color: rgb(206, 206, 162);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+#addList:hover{
+    background-color: rgb(213, 165, 146);
     transform: translateY(-5px);
 }
 
@@ -70,6 +91,7 @@ body{
     border-color: rgb(206, 206, 162);
     border-radius: 5px;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 #resetTimer{
@@ -79,6 +101,7 @@ body{
     border-color: rgb(206, 206, 162);
     border-radius: 5px;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 #stopTimer:hover{
@@ -89,4 +112,70 @@ body{
 #resetTimer:hover{
     background-color: rgb(114, 154, 192);
     transform: translateY(-5px);
+}
+
+#todo{
+    flex: 1;
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+/* #todo input{
+    width: 60px;
+    padding: 8px;
+    text-align: center;
+    font-size: 18px;
+} */
+
+#todoForm{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;;
+    
+}
+
+#toDoListContainer{
+    margin-top: 10px;
+    border-style: solid;
+    padding: 10px;
+    background-color: white;
+    display: none;
+    border-style: solid;
+    border-width: 0.5px;
+    border-radius: 5px;
+}
+
+.list{
+    border-style: solid;
+    border-color:  rgb(0, 0, 0);
+    border-width: 0.5px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(188, 214, 232);
+    margin-bottom: 7px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;        
+}
+
+.deleteBut{
+    background-color: rgb(241, 106, 106);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.deleteBut:hover {
+    background-color: rgb(220, 80, 80);
+    transform: scale(1.1);
 }

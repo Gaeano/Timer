@@ -12,13 +12,12 @@
 <body>
 
 <div id="content">
+    <h1> POMODORO TIMER</h1>
 <div id="input">
 
     <input type="number" id="minutesInput" min="0" max="59">
-    <label>Minutes</label>
     
     <input type="number" id="secondsInput" min="0" max="59">
-    <label>Seconds</label>
 
     <button id="setTime"> Set Time </button>
 </div>
@@ -29,13 +28,24 @@
 <button id="buttonTimer"> START </button>
 <button id="stopTimer"> STOP</button>
 <button id="resetTimer"> RESET</button>
+</div>
+<h2 style="text-align: center;">To do List:</h2>
+<form id="todoForm">
+    <input type="text" id="todo" placeholder="Enter List">
+
+    <input type="submit" value="Add List" id="addList"></input>
+</form>
+
+<div id="toDoListContainer">
+    
+    <!-- to do list -->
+</div>
 
 <audio id ="alarm">
     <source src="alarm.mp3" type="audio/mp3">
     <source src="alarm.wav" type="audio/wav">
 
 </audio>
-</div>
 
 
 </div>
@@ -84,7 +94,7 @@ const startTimer = () => {
          if (timer == 0){
             clearInterval(timerInterval);
             alarm.play();
-            // alert("Time's up!");
+            alert("Time's up!");
             isRunning = false;
             timer = origTimer;
             
@@ -116,6 +126,64 @@ startBTN.addEventListener("click", startTimer);
 stopBTN.addEventListener("click", stopTimer);
 setTime.addEventListener("click", setTimer);
 resetTimer.addEventListener("click", resetTime);
+
+
+//TO DO LIST
+
+const toDoListContainer = document.getElementById('toDoListContainer');
+const addListButton = document.getElementById('addList');
+const todoInput = document.getElementById('todo');
+const todoForm = document.getElementById('todoForm');
+
+let i = 0;
+
+const addList = (e) =>{
+    e.preventDefault();
+
+     const text = todoInput.value.trim();
+    if (text == ''){
+        return;
+    }
+    i++;
+    
+    
+
+    if (i != 0){
+        toDoListContainer.style.display = 'block';
+    }
+    
+    
+    const listCont = document.createElement('div');
+    listCont.className = 'list';
+    const title = document.createElement('span');
+    
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'deleteBut';
+    deleteButton.textContent = 'x';
+
+    deleteButton.addEventListener("click", () => {
+        listCont.remove();
+        i--;
+
+        if(i == 0){
+            toDoListContainer.style.display = 'none';
+        }
+    })
+    
+    
+    title.textContent = text;
+    
+    listCont.appendChild(title);
+    listCont.appendChild(deleteButton);
+    toDoListContainer.appendChild(listCont);
+
+    todoInput.value = '';
+    
+}
+
+
+todoForm.addEventListener("submit", addList);
+addListButton.addEventListener("click", addList);
 
 </script>
 
